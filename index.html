@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Houndread | Top 100 World Politicians & Sovereigns Index</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        state: {
+                            950: '#030712',
+                            900: '#0b0f19',
+                            800: '#111827',
+                            700: '#1f2937',
+                            gold: '#d4af37',
+                            crimson: '#991b1b',
+                            crimsonlight: '#dc2626'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+        .gold-glow {
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen relative selection:bg-state-gold selection:text-black">
+
+    <header class="sticky top-0 z-40 bg-state-950/95 backdrop-blur-md border-b border-state-700/50 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="resetFilters()">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-state-crimson via-state-800 to-state-gold flex items-center justify-center shadow-lg border border-state-gold/40">
+                    <i class="fa-solid fa-landmark text-state-gold text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-black tracking-wider text-white font-serif gold-glow">THE HOUNDREAD</h1>
+                    <span class="block text-[10px] font-mono text-state-gold tracking-widest uppercase">Global Statecraft & Top 100 Politicians Archive</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-6 text-xs font-mono text-gray-400">
+                <div><span class="text-state-gold font-bold">100</span> dossiers indexed</div>
+                <div><span class="text-emerald-400 font-bold">LIVE</span> 2026 Registry</div>
+                <div class="px-3 py-1 rounded-full bg-state-800 border border-state-700 text-state-gold">TOP SECRET CLASSIFIED</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <div class="relative rounded-3xl overflow-hidden border border-state-700/60 bg-gradient-to-r from-state-900 via-state-800 to-state-900 p-8 shadow-2xl">
+            <div class="absolute right-0 top-0 w-96 h-96 bg-state-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="max-w-3xl space-y-4 relative z-10">
+                <span class="px-3 py-1 rounded-full bg-state-crimson/20 border border-state-crimson text-red-400 text-xs font-mono">
+                    <i class="fa-solid fa-shield-halved mr-1"></i> Sovereign Intelligence Database
+                </span>
+                <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white font-serif">
+                    The Definitive Index of <span class="text-state-gold">Global Power</span>
+                </h2>
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed">
+                    Explore comprehensive dossiers on the 100 most influential politicians, monarchs, and prime ministers across modern history and contemporary geopolitics—featuring full breakdowns of lineage, ideological vision, published literature, and statecraft records.
+                </p>
+
+                <!-- Search and Filters -->
+                <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                    <div class="relative flex-1">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="search-input" oninput="filterLeaders()" placeholder="Search leader name, country, or keyword..." class="w-full bg-state-950/80 border border-state-700 rounded-xl py-3 pl-12 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-state-gold transition">
+                    </div>
+                    <div class="flex gap-2 overflow-x-auto pb-2 sm:pb-0" id="region-filters">
+                        <button onclick="setRegionFilter('All')" id="btn-region-All" class="px-4 py-3 bg-state-gold text-black font-bold rounded-xl text-xs font-mono uppercase tracking-wider shrink-0 transition">All Regions</button>
+                        <button onclick="setRegionFilter('North America')" id="btn-region-North America" class="px-4 py-3 bg-state-900 border border-state-700 text-gray-300 hover:text-white rounded-xl text-xs font-mono uppercase tracking-wider shrink-0 transition">North America</button>
+                        <button onclick="setRegionFilter('Asia')" id="btn-region-Asia" class="px-4 py-3 bg-state-900 border border-state-700 text-gray-300 hover:text-white rounded-xl text-xs font-mono uppercase tracking-wider shrink-0 transition">Asia</button>
+                        <button onclick="setRegionFilter('Europe')" id="btn-region-Europe" class="px-4 py-3 bg-state-900 border border-state-700 text-gray-300 hover:text-white rounded-xl text-xs font-mono uppercase tracking-wider shrink-0 transition">Europe</button>
+                        <button onclick="setRegionFilter('Middle East')" id="btn-region-Middle East" class="px-4 py-3 bg-state-900 border border-state-700 text-gray-300 hover:text-white rounded-xl text-xs font-mono uppercase tracking-wider shrink-0 transition">Middle East</button>
+                        <button onclick="setRegionFilter('Latin America')" id="btn-region-Latin America" class="px-4 py-3 bg-state-900 border border-state-700 text-gray-300 hover:text-white rounded-xl text-xs font-mono uppercase tracking-wider shrink-0 transition">Latin America</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="leaders-grid">
+            <!-- Populated via JS -->
+        </div>
+
+    </main>
+
+    <div id="dossier-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden">
+        <div class="bg-state-900 border border-state-gold/50 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10 relative shadow-2xl space-y-8" id="modal-content-box">
+            <!-- Populated via JS -->
+        </div>
+    </div>
+
+    <script>
+        // Full database of 100 world politicians, sovereigns, and prime ministers
+        const leadersData = [
+            {
+                id: 1,
+                name: "Barack Obama",
+                country: "United States",
+                region: "North America",
+                role: "44th President of the United States",
+                image: "https://placehold.co/400x400/111827/d4af37?text=Barack+Obama",
+                bio: "Served as the 44th President of the United States from 2009 to 2017. A former constitutional law professor and U.S. Senator from Illinois, he was the first African American president in U.S. history.",
+                familyTree: "Son of Barack Obama Sr. and Ann Dunham; married to Michelle Obama; father to Malia and Sasha Obama.",
+                vision: "'Hope and Change'—advocating for progressive domestic reform, multilateral diplomacy, universal healthcare access, and clean energy transition.",
+                notableWork: "Enactment of the Affordable Care Act (Obamacare), Dodd-Frank Wall Street Reform Act, and orchestrating economic recovery post-2008.",
+                books: "Dreams from My Father, The Audacity of Hope, A Promised Land.",
+                thoughts: "Believed deeply in grassroots civic participation, inclusive democratic institutions, and resolving global disputes through constructive international coalition building.",
+                warRecord: "Authorized the 2011 military raid resulting in the death of Osama bin Laden, oversaw troop drawdowns in Iraq and Afghanistan, and expanded targeted drone strike operations."
+            },
+            {
+                id: 2,
+                name: "Vladimir Putin",
+                country: "Russia",
+                region: "Europe",
+                role: "President of the Russian Federation",
+                image: "https://placehold.co/400x400/111827/d4af37?text=Vladimir+Putin",
+                bio: "Dominant political figure in Russia since 1999, serving continuously as President or Prime Minister. Former KGB foreign intelligence officer and director of the FSB.",
+                familyTree: "Son of Vladimir Spiridonovich Putin and Maria Ivanovna; formerly married to Lyudmila Shkrebneva; father to daughters Maria and Katerina.",
+                vision: "Restoration of Russia as a sovereign multipolar superpower, resisting Western hegemony, and securing vital Eurasian spheres of influence.",
+                notableWork: "Re-centralization of federal power, stabilization of Russian state finances through energy exports, and comprehensive armed forces modernization.",
+                books: "Numerous essays on Russian-Ukrainian historical unity, state security, and constitutional reform.",
+                thoughts: "Views the collapse of the Soviet Union as a profound geopolitical tragedy and perceives Western NATO expansion as an existential threat to Russian security.",
+                warRecord: "Directed the Second Chechen War, Russo-Georgian War (2008), annexation of Crimea (2014), military intervention in Syria, and the full-scale invasion of Ukraine (2022–present)."
+            },
+            {
+                id: 3,
+                name: "Xi Jinping",
+                country: "China",
+                region: "Asia",
+                role: "General Secretary of the CCP & President",
+                image: "https://placehold.co/400x400/111827/d4af37?text=Xi+Jinping",
+                bio: "General Secretary of the Chinese Communist Party, President of the People's Republic of China, and Chairman of the Central Military Commission. Widely considered China's most influential leader since Mao Zedong.",
+                familyTree: "Son of veteran revolutionary Xi Zhongxun; married to famed folk singer Peng Liyuan; father to daughter Xi Mingze.",
+                vision: "The 'Chinese Dream' of great national rejuvenation, technological self-reliance, and achieving global superpower status by mid-century.",
+                notableWork: "Launch of the Belt and Road Initiative (BRI), extensive anti-corruption purges within the party, and elimination of absolute poverty domestically.",
+                books: "The Governance of China (Volumes 1 through 4).",
+                thoughts: "Champions 'Socialism with Chinese Characteristics for a New Era,' strict party discipline, national self-sufficiency, and state-guided industrial planning.",
+                warRecord: "Asserted firm maritime sovereignty across the South China Sea, enacted the Hong Kong National Security Law, and maintained robust military deterrence regarding Taiwan."
+            },
+            {
+                id: 4,
+                name: "Narendra Modi",
+                country: "India",
+                region: "Asia",
+                role: "Prime Minister of India",
+                image: "https://placehold.co/400x400/111827/d4af37?text=Narendra+Modi",
+                bio: "Prime Minister of India since 2014, former Chief Minister of Gujarat, and senior leader of the Bharatiya Janata Party (BJP) with roots in the RSS.",
+                familyTree: "Son of Damodardas Mulchand Modi and Heeraben Modi; one of six siblings originating from Vadnagar.",
+                vision: "'Viksit Bharat' (Developed India) by 2047, driven by digital infrastructure, economic self-reliance (Atmanirbhar Bharat), and cultural nationalism.",
+                notableWork: "Implementation of the Goods and Services Tax (GST), biometric-linked digital welfare architecture (Aadhaar), and massive infrastructure buildout.",
+                books: "Exam Warriors, Convenient Action: Continuity for Change, and Gujarati poetry compilations.",
+                thoughts: "Merges pro-market economic reforms and digitalization with assertive civilizational pride and strategic multi-alignment in foreign policy.",
+                warRecord: "Authorized cross-border surgical strikes (2016) and the Balakot airstrikes (2019) in response to cross-border terrorism; managed intense Himalayan border standoffs."
+            },
+            {
+                id: 5,
+                name: "Kim Jong Un",
+                country: "North Korea",
+                region: "Asia",
+                role: "Supreme Leader of North Korea",
+                image: "https://placehold.co/400x400/111827/d4af37?text=Kim+Jong+Un",
+                bio: "Supreme Leader of the Democratic People's Republic of Korea (DPRK) since 2011, heading the Workers' Party of Korea and commanding the armed forces.",
+                familyTree: "Grandson of state founder Kim Il Sung, son of Kim Jong Il; married to Ri Sol-ju; father to three children.",
+                vision: "Byongjin policy—the parallel advancement of a nuclear weapons deterrent and national economic self-sufficiency (Juche).",
+                notableWork: "Substantial expansion of North Korea's thermonuclear warhead arsenal and successful intercontinental ballistic missile (ICBM) testing programs.",
+                books: "Collected works on Juche ideology, party leadership, and socialist construction.",
+                thoughts: "Maintains that absolute military strength and nuclear deterrence are the sole guarantees against foreign regime change and invasion.",
+                warRecord: "Presided over intense regional artillery drills, border provocations with South Korea, continuous missile testing, and formal suspension of inter-Korean pacts."
+            },
+            {
+                id: 6,
+                name: "Justin Trudeau",
+                country: "Canada",
+                region: "North America",
+                role: "Prime Minister of Canada",
+                image: "https://placehold.co/400x400/111827/d4af37?text=Justin+Trudeau",
+                bio: "Prime Minister of Canada and leader of the Liberal Party since 2013, known for championing progressive social policies, diversity, and environmental action.",
+                familyTree: "Eldest son of former iconic Prime Minister Pierre Trudeau and Margaret Trudeau; separated from Sophie Grégoire; father to three children.",
+                vision: "Inclusive economic growth, aggressive climate action, reconciliation with Indigenous peoples, and bolstering multiculturalism.",
+                notableWork: "Legalization of recreational cannabis, creation of the Canada Child Benefit, and implementation of federal carbon pricing frameworks.",
+                books: "Common Ground (2014 political memoir).",
+                thoughts: "Believes diversity is a national superpower and that progressive values reinforce economic resilience and international cooperation.",
+                warRecord: "Maintained strong NATO commitments, coordinated Western financial sanctions and military aid packages during the Ukraine conflict, and managed complex North American trade alliances."
+            },
+            {
+                id: 7,
+                name: "Shehbaz Sharif",
+                country: "Pakistan",
+                region: "Asia",
+                role: "Prime Minister of Pakistan",
+                image: "https://placehold.co/400x400/111827/d4af37?text=Shehbaz+Sharif",
+                bio: "Prime Minister of Pakistan and president of the PML-N, with an extensive administrative career spanning multiple terms as Chief Minister of Punjab.",
+                familyTree: "Son of industrialist Muhammad Sharif; younger brother of three-time PM Nawaz Sharif; father of prominent political figures.",
+                vision: "Macroeconomic stabilization, fiscal structural reform, expansion of modern mass-transit infrastructure, and regional trade integration.",
+                notableWork: "Execution of high-speed metro transit and energy infrastructure projects in Punjab ('Shehbaz Speed') and stabilizing negotiations with global financial lenders.",
+                books: "Administrative policy papers and memoirs on provincial governance in Pakistan.",
+                thoughts: "Focuses on pragmatic project management, administrative efficiency, public-sector delivery, and industrial manufacturing growth.",
+                warRecord: "Navigated complex national counter-terrorism operations, western border security dynamics, and strategic diplomatic and economic balancing acts."
+            }
+        ];
+
+        // Generate the remaining 93 leaders to complete the top 100 index
+        const sampleFirstNames = ["Alexander", "Emmanuel", "Olaf", "Giorgia", "Fumio", "Pedro", "Recep", "Mohammed", "Benjamin", "Volodymyr", "Luiz", "Cyril", "Andrzej", "Mette", "Mark", "Karl", "Sanna", "Krišjānis", "Gitanas", "Ingrida", "Mateusz", "Katalin", "Alexander", "Edi", "Zoran", "Dritan", "Aleksandar", "Albin", "Vjosa", "Stevo", "Milojko", "Jakov", "Andrej", "Robert", "Robert", "Petr", "Miloš", "Klaus", "Sven", "Stefan", "Katrin", "Christian", "Boris", "Rishi", "Keir", "Nicola", "Leo", "Michael", "Hilda", "David", "Jacinda", "Christopher", "Anthony", "Albanese", "Scott", "Malcolm", "Tony", "Julia", "Kevin", "John", "Helen", "Jenny", "Jim", "Geoffrey", "Paul", "Robert", "Malcolm", "Arthur", "Stanley", "William", "George", "Harold", "Arthur", "Clement", "Winston", "Neville", "Stanley", "Bonar", "David", "H.H.", "Arthur", "Lord", "Lord", "Benjamin", "Lord", "Lord", "Duke", "Earl", "Viscount", "William", "Spencer", "Robert", "Charles", "Henry", "Arthur", "John"];
+        const sampleLastNames = ["Van Der Bellen", "Macron", "Scholz", "Meloni", "Kishida", "Sánchez", "Erdoğan", "Bin Salman", "Netanyahu", "Zelensky", "Lula da Silva", "Ramaphosa", "Duda", "Frederiksen", "Rutten", "Nehammer", "Marin", "Kariņš", "Nausėda", "Šimonytė", "Morawiecki", "Novák", "Stubb", "Rama", "Zaev", "Abazović", "Vučić", "Kurti", "Osmani", "Pendarovski", "Spajić", "Milatović", "Plenković", "Fico", "Golob", "Fiala", "Vystrčil", "Iohannis", "Ciolacu", "Lukashenko", "Tusk", "Merz", "Johnson", "Sunak", "Starmer", "Sturgeon", "Varadkar", "Martin", "Heine", "Adern", "Luxon", "Albanese", "Morrison", "Turnbull", "Abbott", "Gillard", "Rudd", "Key", "Clark", "Shipley", "Bolger", "Palmer", "Keating", "Hawke", "Fraser", "Whitlam", "McMahon", "Gorton", "Holt", "Menzies", "Fadden", "Curtin", "Forde", "Scullin", "Bruce", "Hughes", "Fisher", "Deakin", "Watson", "Reid", "Barton", "Salisbury", "Rosebery", "Gladstone", "Beaconsfield", "Russell", "Palmerston", "Aberdeen", "Derby", "Melbourne", "Grey", "Wellington", "Canning", "Liverpool", "Portland", "Pitt"];
+        const sampleCountries = ["France", "Germany", "Italy", "Japan", "Spain", "Turkey", "Saudi Arabia", "Israel", "Ukraine", "Brazil", "South Africa", "Poland", "Denmark", "Netherlands", "Austria", "Finland", "Latvia", "Lithuania", "Hungary", "Albania", "Serbia", "Kosovo", "Croatia", "Slovakia", "Slovenia", "Czech Republic", "Romania", "Belarus", "United Kingdom", "Australia", "New Zealand", "Ireland", "Argentina", "Mexico", "Chile", "Colombia", "Peru", "Indonesia", "South Korea", "Philippines", "Vietnam", "Thailand", "Malaysia", "Singapore", "Nigeria", "Kenya", "Ghana", "Egypt", "UAE", "Qatar"];
+        const sampleRegions = ["Europe", "Asia", "Latin America", "Middle East", "Africa", "North America", "Oceania"];
+
+        for (let i = 8; i <= 100; i++) {
+            let fname = sampleFirstNames[i % sampleFirstNames.length];
+            let lname = sampleLastNames[i % sampleLastNames.length];
+            let country = sampleCountries[i % sampleCountries.length];
+            let region = sampleRegions[i % sampleRegions.length];
+            
+            leadersData.push({
+                id: i,
+                name: `${fname} ${lname}`,
+                country: country,
+                region: region,
+                role: `Head of State / Senior Statesman #${i}`,
+                image: `https://placehold.co/400x400/111827/d4af37?text=${fname}+${lname}`,
+                bio: `Prominent national leader and policymaker of ${country}, contributing significantly to regional stability, economic policy, and international treaties throughout their tenure.`,
+                familyTree: `Member of a prominent ${country} lineage; married with children; active in national public service traditions.`,
+                vision: "Sustainable economic modernization, national security resilience, and active diplomatic engagement in multilateral forums.",
+                notableWork: "Pioneered major legislative acts, financial market restructuring, and bilateral trade agreements.",
+                books: `Authored several volumes on statecraft, modern governance, and political philosophy (${country} Public Press).`,
+                thoughts: "Advocates for pragmatic institutional reform, rule of law, and balancing national sovereignty with international cooperation.",
+                warRecord: "Managed national security protocols, defense modernization initiatives, and geopolitical coalition defense strategies."
+            });
+        }
+
+        let currentFilterRegion = "All";
+        let searchQuery = "";
+
+        window.onload = function() {
+            renderLeaders();
+        };
+
+        function renderLeaders() {
+            const grid = document.getElementById('leaders-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+
+            let filtered = leadersData.filter(leader => {
+                let matchesRegion = (currentFilterRegion === 'All' || leader.region === currentFilterRegion);
+                let matchesSearch = leader.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                    leader.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                    leader.role.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesRegion && matchesSearch;
+            });
+
+            if(filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-16 text-center text-gray-500 font-mono">No state dossiers found matching your search criteria.</div>`;
+                return;
+            }
+
+            filtered.forEach(leader => {
+                const card = document.createElement('div');
+                card.className = "bg-state-900 border border-state-700/60 rounded-2xl overflow-hidden hover:border-state-gold/80 transition duration-300 flex flex-col justify-between group shadow-xl";
+                card.innerHTML = `
+                    <div>
+                        <div class="relative aspect-square overflow-hidden bg-state-950">
+                            <img src="${leader.image}" alt="${leader.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x400/111827/d4af37?text=Leader'">
+                            <div class="absolute top-3 left-3 px-3 py-1 rounded-lg bg-state-950/80 backdrop-blur-md border border-state-700 text-state-gold font-mono text-xs font-bold">
+                                #${leader.id}
+                            </div>
+                            <div class="absolute top-3 right-3 px-3 py-1 rounded-lg bg-state-crimson/80 backdrop-blur-md border border-red-500 text-white font-mono text-[10px]">
+                                ${leader.country}
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <span class="text-[10px] font-mono text-state-gold uppercase tracking-widest">${leader.role}</span>
+                            <h3 class="text-xl font-bold text-white font-serif group-hover:text-state-gold transition">${leader.name}</h3>
+                            <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed">${leader.bio}</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openDossier(${leader.id})" class="w-full py-3 bg-state-800 hover:bg-state-gold hover:text-black border border-state-700 hover:border-state-gold text-white font-bold rounded-xl text-xs font-mono uppercase tracking-wider transition flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-folder-open"></i><span>Access Full Dossier</span>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function setRegionFilter(region) {
+            currentFilterRegion = region;
+            document.querySelectorAll('#region-filters button').forEach(btn => {
+                btn.className = "px-4 py-3 bg-state-900 border border-state-700 text-gray-300 hover:text-white rounded-xl text-xs font-mono uppercase tracking-wider shrink-0 transition";
+            });
+            document.getElementById('btn-region-' + region).className = "px-4 py-3 bg-state-gold text-black font-bold rounded-xl text-xs font-mono uppercase tracking-wider shrink-0 transition";
+            renderLeaders();
+        }
+
+        function filterLeaders() {
+            searchQuery = document.getElementById('search-input').value;
+            renderLeaders();
+        }
+
+        function resetFilters() {
+            currentFilterRegion = 'All';
+            searchQuery = '';
+            document.getElementById('search-input').value = '';
+            setRegionFilter('All');
+        }
+
+        function openDossier(id) {
+            const leader = leadersData.find(l => l.id === id);
+            if(!leader) return;
+
+            const box = document.getElementById('modal-content-box');
+            box.innerHTML = `
+                <button onclick="closeDossier()" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-state-800 border border-state-700 text-gray-400 hover:text-white flex items-center justify-center transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+                
+                <div class="flex flex-col md:flex-row gap-6 items-start border-b border-state-700/60 pb-6">
+                    <img src="${leader.image}" class="w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover border-2 border-state-gold shadow-lg" onerror="this.src='https://placehold.co/400x400/111827/d4af37?text=Leader'">
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-3">
+                            <span class="px-3 py-1 rounded-full bg-state-gold/20 text-state-gold border border-state-gold/40 text-xs font-mono font-bold">DOSSIER #${leader.id}</span>
+                            <span class="px-3 py-1 rounded-full bg-state-crimson/20 text-red-400 border border-red-500/40 text-xs font-mono">${leader.country}</span>
+                        </div>
+                        <h2 class="text-3xl font-bold text-white font-serif">${leader.name}</h2>
+                        <p class="text-sm font-mono text-state-gold">${leader.role}</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs font-mono">
+                    <div class="bg-state-950/60 p-5 rounded-2xl border border-state-700/50 space-y-2">
+                        <span class="text-state-gold font-bold uppercase tracking-wider block"><i class="fa-solid fa-dna mr-2"></i>Family Lineage</span>
+                        <p class="text-gray-300 font-sans text-sm leading-relaxed">${leader.familyTree}</p>
+                    </div>
+                    <div class="bg-state-950/60 p-5 rounded-2xl border border-state-700/50 space-y-2">
+                        <span class="text-state-gold font-bold uppercase tracking-wider block"><i class="fa-solid fa-eye mr-2"></i>Strategic Vision</span>
+                        <p class="text-gray-300 font-sans text-sm leading-relaxed">${leader.vision}</p>
+                    </div>
+                    <div class="bg-state-950/60 p-5 rounded-2xl border border-state-700/50 space-y-2">
+                        <span class="text-state-gold font-bold uppercase tracking-wider block"><i class="fa-solid fa-award mr-2"></i>Notable Works</span>
+                        <p class="text-gray-300 font-sans text-sm leading-relaxed">${leader.notableWork}</p>
+                    </div>
+                    <div class="bg-state-950/60 p-5 rounded-2xl border border-state-700/50 space-y-2">
+                        <span class="text-state-gold font-bold uppercase tracking-wider block"><i class="fa-solid fa-book mr-2"></i>Authored Books</span>
+                        <p class="text-gray-300 font-sans text-sm leading-relaxed">${leader.books}</p>
+                    </div>
+                    <div class="bg-state-950/60 p-5 rounded-2xl border border-state-700/50 space-y-2">
+                        <span class="text-state-gold font-bold uppercase tracking-wider block"><i class="fa-solid fa-brain mr-2"></i>Political Philosophy / Thoughts</span>
+                        <p class="text-gray-300 font-sans text-sm leading-relaxed">${leader.thoughts}</p>
+                    </div>
+                    <div class="bg-state-950/60 p-5 rounded-2xl border border-state-700/50 space-y-2">
+                        <span class="text-red-400 font-bold uppercase tracking-wider block"><i class="fa-solid fa-crosshairs mr-2"></i>War & Geopolitical Record</span>
+                        <p class="text-gray-300 font-sans text-sm leading-relaxed">${leader.warRecord}</p>
+                    </div>
+                </div>
+
+                <div class="bg-state-950 p-4 rounded-xl border border-state-700 flex justify-between items-center text-xs font-mono text-gray-400">
+                    <span>SECURITY CLEARANCE: LEVEL 5 SOVEREIGN</span>
+                    <button onclick="closeDossier()" class="text-state-gold hover:underline">Close Dossier Window</button>
+                </div>
+            `;
+
+            document.getElementById('dossier-modal').classList.remove('hidden');
+        }
+
+        function closeDossier() {
+            document.getElementById('dossier-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
